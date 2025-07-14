@@ -1321,10 +1321,6 @@
                 <span class="material-icons">games</span>
                 <div>Games</div>
             </a>
-            <a data-target="editing" class="side-menu-nav-item nav-editing">
-                <span class="material-icons">movie</span>
-                <div>Editing</div>
-            </a>
         </nav>
         <div class="side-menu-footer">
             <a href="#">Feedback</a>
@@ -1369,24 +1365,7 @@
                 <div id="latestPagination" class="pagination"></div>
             </div>
 
-            <div id="editingSection" class="section active">
-                <div id="editing-section-header" class="section-header">
-                    <span class="material-icons section-icon" style="color: #ffab00;">movie</span>
-                    <h2 class="section-title">Editing</h2>
-                </div>
-                <div id="editingList" class="item-grid editing-grid">
-                    <p class="loading-message" style="grid-column: 1 / -1;">Loading items...</p>
-                </div>
-                <div id="editingPagination" class="pagination"></div>
-            </div>
-
             <div id="footerSection" class="section active">
-                <div id="news-banner-container">
-                    <div class="news-banner">
-                        <span class="section-title">Latest News</span>
-                        <span class="material-icons">arrow_forward_ios</span>
-                    </div>
-                </div>
                 <div class="footer-banner">
                     <img src="https://i.postimg.cc/s1cbTzYN/IMG-20250712-111942-525.jpg" alt="💠⚜️ R-B MODs ⚜️💠 Logo">
                     <p>Copyright © 2026 | dev by 𓃠Ｒ𝔸𝐉𓃠</p>
@@ -1495,10 +1474,8 @@
         let currentScreenshotIndex = 0;
         let pageStates = {
             home_latest: 1,
-            home_editing: 1, 
             app: 1,
-            game: 1,
-            editing: 1 
+            game: 1
         };
 
         // --- DOM Elements ---
@@ -1536,7 +1513,6 @@
                 hideDetailSection();
             }
             pageStates.home_latest = 1;
-            pageStates.home_editing = 1; 
             currentFilter = 'home';
             renderContent('home');
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1559,8 +1535,6 @@
             let sectionId;
             if (pageType === 'home_latest' || currentFilter === 'app' || currentFilter === 'game') {
                 sectionId = 'latestSection';
-            } else if (pageType === 'home_editing' || currentFilter === 'editing') {
-                sectionId = 'editingSection';
             }
             if (sectionId) {
                 const headerOffset = 70;
@@ -1578,16 +1552,14 @@
 
             document.getElementById('popularSection').style.display = 'none';
             document.getElementById('latestSection').style.display = 'none';
-            document.getElementById('editingSection').style.display = 'none';
             document.getElementById('footerSection').style.display = 'none';
             detailSection.classList.remove('active');
             detailSection.classList.add('hidden');
             mainContent.classList.remove('hidden');
 
             if (filterType === 'home') {
-                ['popularSection', 'latestSection', 'editingSection', 'footerSection'].forEach(id => document.getElementById(id).style.display = 'block');
+                ['popularSection', 'latestSection', 'footerSection'].forEach(id => document.getElementById(id).style.display = 'block');
                 document.getElementById('latest-section-header').querySelector('.section-title').textContent = 'Latest Posts';
-                document.getElementById('editing-section-header').querySelector('.section-title').textContent = 'Editing';
 
                 const popular = searchFilteredItems.filter(i => i.isPremium && (i.type === 'app' || i.type === 'game'));
                 renderPopularItems(popular, 'popularList');
@@ -1597,12 +1569,6 @@
                 const latestPaginated = latestItems.slice((latestPage - 1) * ITEMS_PER_PAGE, latestPage * ITEMS_PER_PAGE);
                 renderItemGrid(latestPaginated, 'latestList', false);
                 renderPagination('latestPagination', latestItems.length, ITEMS_PER_PAGE, latestPage, 'home_latest');
-
-                const editingItems = searchFilteredItems.filter(i => i.type === 'editing');
-                const editingPage = pageStates.home_editing;
-                const editingPaginated = editingItems.slice((editingPage - 1) * ITEMS_PER_PAGE, editingPage * ITEMS_PER_PAGE);
-                renderItemGrid(editingPaginated, 'editingList', true);
-                renderPagination('editingPagination', editingItems.length, ITEMS_PER_PAGE, editingPage, 'home_editing');
 
             } else {
                 document.getElementById('footerSection').style.display = 'block';
@@ -1615,11 +1581,6 @@
                     document.getElementById('latest-section-header').querySelector('.section-title').textContent = filterType === 'app' ? 'All Apps' : 'All Games';
                     renderItemGrid(paginatedItems, 'latestList', false);
                     renderPagination('latestPagination', itemsToShow.length, ITEMS_PER_PAGE, currentPage, filterType);
-                } else if (filterType === 'editing') { 
-                    document.getElementById('editingSection').style.display = 'block';
-                    document.getElementById('editing-section-header').querySelector('.section-title').textContent = 'All Editing Items';
-                    renderItemGrid(paginatedItems, 'editingList', true);
-                    renderPagination('editingPagination', itemsToShow.length, ITEMS_PER_PAGE, currentPage, filterType);
                 }
             }
         }
