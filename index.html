@@ -263,6 +263,10 @@
             color: var(--text-color-primary);
             transition: background-color 0.2s ease;
             cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .side-menu-nav-item:hover {
@@ -273,23 +277,7 @@
             font-size: 28px;
             margin-bottom: 8px;
         }
-
-        .nav-home .material-icons {
-            color: #fbbc04;
-        }
-
-        .nav-apps .material-icons {
-            color: #ab47bc;
-        }
-
-        .nav-games .material-icons {
-            color: #ff3d71;
-        }
-
-        .nav-editing .material-icons { 
-            color: #42a5f5;
-        }
-
+        
         .side-menu-footer {
             margin-top: auto;
             text-align: center;
@@ -394,9 +382,8 @@
             top: 15px;
             right: 15px;
             background: white;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
+            padding: 4px 8px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -405,6 +392,7 @@
             color: var(--text-color-primary);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 15;
+            gap: 4px;
         }
 
         .android-badge .material-icons {
@@ -458,11 +446,10 @@
             padding: 0 5px;
         }
 
-        .popular-card-info,
-        .popular-card-promo .mixhub-logo-small {
+        .popular-card-info {
             display: none;
         }
-
+        
         /* --- Item Grids --- */
 
         .item-grid {
@@ -545,7 +532,7 @@
             word-break: break-word;
         }
 
-        .item-card-type {
+        .item-card-category {
             font-size: 12px;
             color: var(--text-color-secondary);
             margin-bottom: 8px;
@@ -561,30 +548,7 @@
             padding-top: 8px;
             margin-top: 8px;
         }
-
-        .editing-grid { 
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        }
-
-        .editing-card .item-card-icon-container { 
-            width: 100%;
-            height: auto;
-            padding-top: 150%;
-            position: relative;
-        }
-
-        .editing-card .item-card-icon { 
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        .editing-card .item-card-info { 
-            display: none;
-        }
-
+        
         /* --- Pagination --- */
 
         .pagination {
@@ -629,42 +593,8 @@
             align-items: center;
             justify-content: center;
         }
-
-        /* --- News & Footer Banner --- */
-
-        #news-banner-container {
-            padding: 10px 0 20px 0;
-        }
-
-        .news-banner {
-            background: var(--text-color-primary);
-            color: var(--text-color-on-accent);
-            padding: 20px 25px;
-            border-radius: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .news-banner:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .news-banner .section-title {
-            color: var(--text-color-on-accent);
-            font-size: 18px;
-        }
-
-        .news-banner .material-icons {
-            font-size: 20px;
-            background-color: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            padding: 6px;
-        }
-
+        
+        /* --- Footer Banner --- */
         .footer-banner {
             margin-top: 20px;
             padding: 25px;
@@ -768,7 +698,7 @@
             line-height: 1.3;
         }
 
-        #detailAppType {
+        #detailAppCategory {
             font-size: 14px;
             color: var(--text-color-secondary);
             margin: 2px 0 6px 0;
@@ -799,17 +729,6 @@
             flex: 1 1 auto;
             min-width: 150px;
             max-width: 100%;
-            justify-content: flex-start;
-            gap: 0;
-        }
-
-        .btn .material-icons {
-            margin-right: 8px;
-        }
-
-        .button-label {
-            flex-grow: 1;
-            text-align: center;
         }
 
         .btn {
@@ -894,19 +813,13 @@
         .screenshot-gallery::-webkit-scrollbar {
             height: 8px;
         }
-
         .screenshot-gallery::-webkit-scrollbar-track {
             background: var(--bg-color);
             border-radius: 4px;
         }
-
         .screenshot-gallery::-webkit-scrollbar-thumb {
             background-color: var(--border-color);
             border-radius: 4px;
-        }
-
-        .screenshot-gallery::-webkit-scrollbar-thumb:hover {
-            background-color: #c8d1db;
         }
 
         .screenshot-img {
@@ -924,7 +837,6 @@
         }
 
         /* Review Section */
-
         .review-form {
             background: var(--surface-color);
             padding: 20px;
@@ -946,9 +858,7 @@
             direction: rtl;
         }
 
-        .star-rating input {
-            display: none;
-        }
+        .star-rating input { display: none; }
 
         .star-rating label {
             font-size: 32px;
@@ -997,288 +907,81 @@
             animation: fadeIn 0.5s ease-out both;
         }
 
-        .review-item:first-child {
-            border-top: none;
-            padding-top: 0;
-        }
-
-        .review-item p {
-            margin: 4px 0;
-            font-size: 14px;
-            color: var(--text-color-secondary);
-            word-break: break-word;
-        }
-
-        .review-item strong {
-            color: var(--text-color-primary);
-            font-weight: 600;
-            font-size: 15px;
-        }
-
-        .review-item .review-stars {
-            color: var(--star-color);
-            font-size: 16px;
-            margin-bottom: 6px;
-        }
+        .review-item:first-child { border-top: none; padding-top: 0; }
+        .review-item p { margin: 4px 0; font-size: 14px; color: var(--text-color-secondary); word-break: break-word; }
+        .review-item strong { color: var(--text-color-primary); font-weight: 600; font-size: 15px; }
+        .review-item .review-stars { color: var(--star-color); font-size: 16px; margin-bottom: 6px; }
         
         /* --- Fullscreen Lightbox Styles --- */
-
         .lightbox-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85);
             z-index: 4000;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
+            align-items: center; justify-content: center;
+            opacity: 0; visibility: hidden;
             transition: opacity 0.3s ease, visibility 0.3s ease;
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
         }
-
-        .lightbox-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 95vw;
-            max-height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .lightbox-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-        }
+        .lightbox-overlay.active { opacity: 1; visibility: visible; }
+        .lightbox-content { position: relative; max-width: 95vw; max-height: 90vh; }
+        .lightbox-image { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; box-shadow: 0 0 40px rgba(0, 0, 0, 0.5); }
 
         .lightbox-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
+            position: absolute; top: 50%; transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 44px;
-            height: 44px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            transition: background-color 0.2s;
+            color: white; border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%; width: 44px; height: 44px;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 28px; transition: background-color 0.2s;
         }
-
-        .lightbox-nav:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .lightbox-prev {
-            left: -60px;
-        }
-
-        .lightbox-next {
-            right: -60px;
-        }
+        .lightbox-nav:hover { background: rgba(255, 255, 255, 0.2); }
+        .lightbox-prev { left: -60px; }
+        .lightbox-next { right: -60px; }
 
         .lightbox-close {
-            position: absolute;
-            top: -45px;
-            right: -10px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 40px;
-            cursor: pointer;
-            line-height: 1;
-            opacity: 0.8;
-            transition: opacity 0.2s;
+            position: absolute; top: -45px; right: -10px;
+            background: none; border: none; color: white;
+            font-size: 40px; cursor: pointer; line-height: 1;
+            opacity: 0.8; transition: opacity 0.2s;
         }
-
-        .lightbox-close:hover {
-            opacity: 1;
-        }
-
+        .lightbox-close:hover { opacity: 1; }
+        
         @media (max-width: 600px) {
-            .lightbox-prev {
-                left: 5px;
-            }
-            .lightbox-next {
-                right: 5px;
-            }
-            .lightbox-close {
-                top: 10px;
-                right: 10px;
-                font-size: 32px;
-                background: rgba(0, 0, 0, 0.3);
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-            }
+            .lightbox-prev { left: 5px; }
+            .lightbox-next { right: 5px; }
+            .lightbox-close { top: 10px; right: 10px; font-size: 32px; background: rgba(0, 0, 0, 0.3); border-radius: 50%; width: 40px; height: 40px; }
         }
 
         /* Utility Classes */
-
-        .loading-message {
-            text-align: center;
-            color: var(--text-color-secondary);
-            font-style: italic;
-            margin: 40px auto;
-            width: 100%;
-            font-size: 16px;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .section {
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-        }
+        .loading-message { text-align: center; color: var(--text-color-secondary); font-style: italic; margin: 40px auto; width: 100%; font-size: 16px; }
+        .hidden { display: none !important; }
+        .section { display: none; }
+        .section.active { display: block; }
 
         /* Keyframes */
-
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 0.7;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeInUpSmall {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes zoomIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
+        @keyframes pulse { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUpSmall { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
         /* Responsive */
-
         @media (max-width: 768px) {
-            .app-title {
-                display: none;
-            }
-            .popular-card-item {
-                flex: 0 0 260px;
-            }
-            .item-grid {
-                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            }
-            .detail-card {
-                flex-direction: column;
-                text-align: center;
-            }
-            .lightbox-prev {
-                left: 5px;
-            }
-            .lightbox-next {
-                right: 5px;
-            }
-            .lightbox-close {
-                top: 10px;
-                right: 10px;
-                font-size: 32px;
-                background: rgba(0, 0, 0, 0.3);
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-            }
+            .app-title { display: none; }
+            .popular-card-item { flex: 0 0 260px; }
+            .item-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            .detail-card { flex-direction: column; text-align: center; }
         }
-
         @media (max-width: 480px) {
-            .item-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .popular-card-item {
-                flex: 0 0 240px;
-            }
-            .popular-card-base {
-                height: 180px;
-            }
-            .popular-app-logo-wrapper {
-                width: 80px;
-                height: 80px;
-                border-radius: 20px;
-                border-width: 2px;
-            }
-            .popular-app-logo {
-                width: 100%;
-                height: 100%;
-                border-radius: inherit;
-                object-fit: contain;
-            }
-            .popular-card-app-name {
-                font-size: 14px;
-            }
-            .detail-actions .btn {
-                flex: 1 1 100%;
-                min-width: unset;
-            }
-            .android-badge {
-                top: 10px;
-                right: 10px;
-                font-size: 10px;
-                padding: 3px 6px;
-                width: 28px;
-                height: 28px;
-            }
-            .android-badge .material-icons {
-                font-size: 12px;
-            }
+            .item-grid { grid-template-columns: repeat(2, 1fr); }
+            .popular-card-item { flex: 0 0 240px; }
+            .popular-card-base { height: 180px; }
+            .popular-app-logo-wrapper { width: 80px; height: 80px; border-radius: 20px; border-width: 2px; }
+            .popular-card-app-name { font-size: 14px; }
+            .detail-actions .btn { flex: 1 1 100%; min-width: unset; }
         }
     </style>
 </head>
@@ -1308,19 +1011,8 @@
                 <span class="material-icons">close</span>
             </button>
         </div>
-        <nav class="side-menu-nav">
-            <a data-target="home" class="side-menu-nav-item nav-home">
-                <span class="material-icons">home</span>
-                <div>Home</div>
-            </a>
-            <a data-target="app" class="side-menu-nav-item nav-apps">
-                <span class="material-icons">apps</span>
-                <div>Apps</div>
-            </a>
-            <a data-target="game" class="side-menu-nav-item nav-games">
-                <span class="material-icons">games</span>
-                <div>Games</div>
-            </a>
+        <nav id="sideMenuNav" class="side-menu-nav">
+            <!-- Navigation items will be dynamically inserted here -->
         </nav>
         <div class="side-menu-footer">
             <a href="#">Feedback</a>
@@ -1347,22 +1039,22 @@
             <div id="popularSection" class="section active">
                 <div id="popular-section-header" class="section-header">
                     <span class="material-icons section-icon" style="color: #ff3d71;">whatshot</span>
-                    <h2 class="section-title">Hot Apps</h2>
+                    <h2 class="section-title">Hot Items</h2>
                 </div>
                 <div id="popularList" class="popular-carousel">
                     <p class="loading-message" style="width: 100%;">Loading popular items...</p>
                 </div>
             </div>
 
-            <div id="latestSection" class="section active">
-                <div id="latest-section-header" class="section-header">
+            <div id="itemsSection" class="section active">
+                <div id="items-section-header" class="section-header">
                     <span class="material-icons section-icon" style="color: #536dfe;">grid_view</span>
                     <h2 class="section-title">Latest Posts</h2>
                 </div>
-                <div id="latestList" class="item-grid">
+                <div id="itemsList" class="item-grid">
                     <p class="loading-message" style="grid-column: 1 / -1;">Loading latest items...</p>
                 </div>
-                <div id="latestPagination" class="pagination"></div>
+                <div id="itemsPagination" class="pagination"></div>
             </div>
 
             <div id="footerSection" class="section active">
@@ -1386,7 +1078,7 @@
                 <img id="detailAppImage" src="" alt="Item Icon" class="placeholder">
                 <div class="detail-info">
                     <h3 id="detailAppName">Item Name</h3>
-                    <p id="detailAppType">Type: <span>App</span></p>
+                    <p id="detailAppCategory">Category: <span>App</span></p>
                     <div id="detailStarRating">
                         <span class="stars">☆☆☆☆☆</span>
                         <span class="review-count">(0 reviews)</span>
@@ -1395,10 +1087,12 @@
             </div>
             <div class="detail-actions">
                 <a href="#" target="_blank" id="detailAppDownloadLink" class="btn btn-primary">
-                    <span class="material-icons">download</span><span class="button-label">Download</span>
+                    <span class="material-icons">download</span>
+                    <span>Download</span>
                 </a>
                 <button class="btn btn-secondary" onclick="scrollToReviews()">
-                    <span class="material-icons">refresh</span><span class="button-label">Request Update</span>
+                    <span class="material-icons">refresh</span>
+                    <span>Request Update</span>
                 </button>
             </div>
 
@@ -1458,7 +1152,6 @@
             appId: "1:980274777804:web:c58ef569de946d8e35fc69"
         };
         
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
         /************************************/
@@ -1474,8 +1167,6 @@
         let currentScreenshotIndex = 0;
         let pageStates = {
             home_latest: 1,
-            app: 1,
-            game: 1
         };
 
         // --- DOM Elements ---
@@ -1485,13 +1176,14 @@
         const closeMenuBtn = document.querySelector('.close-menu-btn');
         const sideMenu = document.querySelector('.side-menu');
         const menuOverlay = document.querySelector('.menu-overlay');
-        const navItems = document.querySelectorAll('.side-menu-nav-item');
+        const sideMenuNav = document.getElementById('sideMenuNav');
         const searchBtn = document.querySelector('.search-btn');
         const searchOverlay = document.getElementById('searchOverlay');
         const mainSearchInput = document.getElementById('mainSearchInput');
         const appLogo = document.getElementById('appLogo');
         const lightboxOverlay = document.getElementById('lightboxOverlay');
         
+        // --- UI Functions ---
         function toggleMenu() {
             sideMenu.classList.toggle('active');
             menuOverlay.classList.toggle('active');
@@ -1508,6 +1200,51 @@
             }
         }
 
+        function getCategoryIcon(category) {
+            const catLower = category.toLowerCase();
+            if (catLower.includes('game')) return 'games';
+            if (catLower.includes('video')) return 'videocam';
+            if (catLower.includes('photo')) return 'photo_camera';
+            if (catLower.includes('movie')) return 'movie';
+            if (catLower.includes('vpn')) return 'vpn_key';
+            if (catLower.includes('music')) return 'music_note';
+            if (catLower.includes('tool')) return 'build';
+            return 'apps'; // Default icon
+        }
+
+        function createSideNav() {
+            sideMenuNav.innerHTML = ''; // Clear existing
+            
+            // 1. Get all unique categories from the items
+            const categories = [...new Set(allItems.map(item => item.category).filter(Boolean))].sort();
+
+            // 2. Add 'Home' button first
+            const homeItem = document.createElement('a');
+            homeItem.className = 'side-menu-nav-item';
+            homeItem.innerHTML = `<span class="material-icons" style="color: #fbbc04;">home</span><div>Home</div>`;
+            homeItem.onclick = () => {
+                goHome();
+                toggleMenu();
+            };
+            sideMenuNav.appendChild(homeItem);
+
+            // 3. Add a button for each category
+            categories.forEach(category => {
+                if (!pageStates[category]) {
+                    pageStates[category] = 1; // Initialize page state for new category
+                }
+                const navItem = document.createElement('a');
+                navItem.className = 'side-menu-nav-item';
+                navItem.innerHTML = `<span class="material-icons">${getCategoryIcon(category)}</span><div>${escapeHTML(category)}</div>`;
+                navItem.onclick = () => {
+                    navigateAndFilter(category);
+                    toggleMenu();
+                };
+                sideMenuNav.appendChild(navItem);
+            });
+        }
+        
+        // --- Navigation and Rendering ---
         function goHome() {
             if (detailSection.classList.contains('active')) {
                 hideDetailSection();
@@ -1518,12 +1255,12 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function navigateAndFilter(targetType) {
+        function navigateAndFilter(category) {
             if (detailSection.classList.contains('active')) {
                 hideDetailSection();
             }
-            pageStates[targetType] = 1;
-            currentFilter = targetType;
+            pageStates[category] = 1;
+            currentFilter = category;
             renderContent(currentFilter);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1531,57 +1268,49 @@
         function changePage(page, pageType) {
             pageStates[pageType] = page;
             renderContent(currentFilter);
-
-            let sectionId;
-            if (pageType === 'home_latest' || currentFilter === 'app' || currentFilter === 'game') {
-                sectionId = 'latestSection';
-            }
-            if (sectionId) {
-                const headerOffset = 70;
-                const elementPosition = document.getElementById(sectionId).offsetTop;
+            const headerOffset = 70;
+            const element = document.getElementById('itemsSection') || document.getElementById('popularSection');
+            if (element) {
+                const elementPosition = element.offsetTop;
                 const offsetPosition = elementPosition - headerOffset;
                 window.scrollTo({ top: offsetPosition, behavior: "smooth" });
             }
         }
 
-        function renderContent(filterType = 'home', searchTerm = '') {
+        function renderContent(filterType = 'home') {
             currentFilter = filterType;
-            const searchFilteredItems = searchTerm ?
-                allItems.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase())) :
-                allItems;
-
+            
             document.getElementById('popularSection').style.display = 'none';
-            document.getElementById('latestSection').style.display = 'none';
+            document.getElementById('itemsSection').style.display = 'none';
             document.getElementById('footerSection').style.display = 'none';
             detailSection.classList.remove('active');
             detailSection.classList.add('hidden');
             mainContent.classList.remove('hidden');
 
             if (filterType === 'home') {
-                ['popularSection', 'latestSection', 'footerSection'].forEach(id => document.getElementById(id).style.display = 'block');
-                document.getElementById('latest-section-header').querySelector('.section-title').textContent = 'Latest Posts';
+                ['popularSection', 'itemsSection', 'footerSection'].forEach(id => document.getElementById(id).style.display = 'block');
+                
+                document.getElementById('items-section-header').querySelector('.section-title').textContent = 'Latest Posts';
 
-                const popular = searchFilteredItems.filter(i => i.isPremium && (i.type === 'app' || i.type === 'game'));
+                const popular = allItems.filter(i => i.isPremium);
                 renderPopularItems(popular, 'popularList');
 
-                const latestItems = searchFilteredItems.filter(i => i.type === 'app' || i.type === 'game');
                 const latestPage = pageStates.home_latest;
-                const latestPaginated = latestItems.slice((latestPage - 1) * ITEMS_PER_PAGE, latestPage * ITEMS_PER_PAGE);
-                renderItemGrid(latestPaginated, 'latestList', false);
-                renderPagination('latestPagination', latestItems.length, ITEMS_PER_PAGE, latestPage, 'home_latest');
+                const latestPaginated = allItems.slice((latestPage - 1) * ITEMS_PER_PAGE, latestPage * ITEMS_PER_PAGE);
+                renderItemGrid(latestPaginated, 'itemsList');
+                renderPagination('itemsPagination', allItems.length, ITEMS_PER_PAGE, latestPage, 'home_latest');
 
             } else {
-                document.getElementById('footerSection').style.display = 'block';
-                const itemsToShow = searchFilteredItems.filter(item => item.type === filterType);
+                ['itemsSection', 'footerSection'].forEach(id => document.getElementById(id).style.display = 'block');
+                
+                document.getElementById('items-section-header').querySelector('.section-title').textContent = `All ${filterType}`;
+
+                const itemsToShow = allItems.filter(item => item.category === filterType);
                 const currentPage = pageStates[filterType];
                 const paginatedItems = itemsToShow.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
-
-                if (filterType === 'app' || filterType === 'game') {
-                    document.getElementById('latestSection').style.display = 'block';
-                    document.getElementById('latest-section-header').querySelector('.section-title').textContent = filterType === 'app' ? 'All Apps' : 'All Games';
-                    renderItemGrid(paginatedItems, 'latestList', false);
-                    renderPagination('latestPagination', itemsToShow.length, ITEMS_PER_PAGE, currentPage, filterType);
-                }
+                
+                renderItemGrid(paginatedItems, 'itemsList');
+                renderPagination('itemsPagination', itemsToShow.length, ITEMS_PER_PAGE, currentPage, filterType);
             }
         }
         
@@ -1622,19 +1351,83 @@
             }
         }
 
+        function renderPopularItems(items, elementId) {
+            const container = document.getElementById(elementId);
+            container.innerHTML = '';
+            if (!items || items.length === 0) {
+                container.innerHTML = `<p class='loading-message'>No popular items found.</p>`;
+                return;
+            }
+            items.forEach((item) => {
+                const cardWrapper = document.createElement("div");
+                cardWrapper.className = "popular-card-item";
+                cardWrapper.onclick = () => showItemDetail(item);
+                const androidVersionText = item.minAndroidVersion ? `${item.minAndroidVersion}+` : '';
+
+                cardWrapper.innerHTML = `
+                    <div class="popular-card-base">
+                        <div class="popular-card-abstract-bg">
+                            <svg viewBox="0 0 280 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 80C50 20, 150 0, 200 50L200 0L0 0L0 80Z" fill="#78B9F5" opacity="0.6"/><path d="M120 0C170 20, 250 80, 280 120L280 0Z" fill="#FDD835" opacity="0.7"/><path d="M0 120C50 180, 150 200, 200 150L200 200L0 200L0 120Z" fill="#F48FB1" opacity="0.6"/><path d="M100 200C150 180, 250 120, 280 80L280 200Z" fill="#81C784" opacity="0.7"/></svg>
+                        </div>
+                        <div class="android-badge">
+                            <span class="material-icons">android</span> ${escapeHTML(androidVersionText)}
+                        </div>
+                        <div class="popular-app-logo-wrapper">
+                            <img src="${escapeHTML(item.imageUrl)}" class="popular-app-logo" alt="${escapeHTML(item.name)} Logo" onerror="this.onerror=null; this.classList.add('placeholder');">
+                        </div>
+                    </div>
+                    <h3 class="popular-card-app-name">${escapeHTML(item.name)}</h3>`;
+                container.appendChild(cardWrapper);
+            });
+        }
+
+        function renderItemGrid(items, elementId) { 
+            const container = document.getElementById(elementId);
+            container.innerHTML = '';
+
+            if (!items || items.length === 0) {
+                container.innerHTML = `<p class='loading-message' style="grid-column: 1 / -1;">No items found in this category.</p>`;
+                return;
+            }
+            items.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "item-card";
+                card.onclick = () => showItemDetail(item);
+                const newTagHTML = isNew(item) ? '<div class="new-tag">NEW</div>' : '';
+                const imgClass = item.imageUrl ? 'item-card-icon' : 'item-card-icon placeholder';
+                const reviews = Array.isArray(item.reviews) ? item.reviews : [];
+                const avgRating = reviews.length > 0 ? (reviews.reduce((s, r) => s + Number(r.rating), 0) / reviews.length).toFixed(1) : 'N/A';
+                
+                card.innerHTML = `
+                    ${newTagHTML}
+                    <div class="item-card-icon-container">
+                        <img src="${escapeHTML(item.imageUrl)}" class="${imgClass}" alt="${escapeHTML(item.name)} icon" onerror="this.onerror=null; this.classList.add('placeholder'); this.src='';">
+                    </div>
+                    <div class="item-card-title">${escapeHTML(item.name)}</div>
+                    <div class="item-card-category">${escapeHTML(item.category)}</div>
+                    <div class="item-card-info">
+                        <span>★ ${avgRating}</span>
+                        <span>v${item.version || '1.0'}</span>
+                    </div>`;
+                container.appendChild(card);
+            });
+        }
+        
+        // --- Data Fetching and Updating ---
         async function fetchAllItems() {
             try {
                 const snapshot = await database.ref('items').get();
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     allItems = Object.values(data); 
-                    allItems.sort((a, b) => a.name.localeCompare(b.name));
+                    allItems.sort((a, b) => (b.addedTimestamp || 0) - (a.addedTimestamp || 0)); // Sort by newest first
                 } else {
                     allItems = [];
                 }
-                renderContent('home');
+                createSideNav(); // Create the menu based on fetched data
+                renderContent('home'); // Render the home page
             } catch (error) {
-                console.error("Error fetching items from Firebase:", error);
+                console.error("Error fetching items:", error);
                 mainContent.innerHTML = `<p class="loading-message" style="color: #d93025;">Failed to load app data.</p>`;
             }
         }
@@ -1649,74 +1442,8 @@
                 await fetchAllItems(); 
             }
         }
-
-        function isNew(item) {
-            return item.addedTimestamp && (Date.now() - item.addedTimestamp) < NEW_DURATION_MS;
-        }
-
-        function renderPopularItems(items, elementId) {
-            const container = document.getElementById(elementId);
-            container.innerHTML = '';
-            if (items.length === 0) {
-                container.innerHTML = `<p class='loading-message'>No popular items found.</p>`;
-                return;
-            }
-            items.forEach((item) => {
-                const cardWrapper = document.createElement("div");
-                cardWrapper.className = "popular-card-item";
-                cardWrapper.onclick = () => showItemDetail(item);
-                const appLogoUrl = item.imageUrl || '';
-                const androidVersionText = item.minAndroidVersion ? `${item.minAndroidVersion}+` : '';
-
-                cardWrapper.innerHTML = `
-                    <div class="popular-card-base">
-                         <div class="popular-card-abstract-bg">
-                            <svg viewBox="0 0 280 200" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 80C50 20, 150 0, 200 50L200 0L0 0L0 80Z" fill="#78B9F5" opacity="0.6"/>
-                                <path d="M120 0C170 20, 250 80, 280 120L280 0Z" fill="#FDD835" opacity="0.7"/>
-                                <path d="M0 120C50 180, 150 200, 200 150L200 200L0 200L0 120Z" fill="#F48FB1" opacity="0.6"/>
-                                <path d="M100 200C150 180, 250 120, 280 80L280 200Z" fill="#81C784" opacity="0.7"/>
-                            </svg>
-                        </div>
-                        <div class="android-badge">
-                            <span class="material-icons">android</span> ${escapeHTML(androidVersionText)}
-                        </div>
-                        <div class="popular-app-logo-wrapper">
-                            <img src="${escapeHTML(appLogoUrl)}" class="popular-app-logo" alt="${escapeHTML(item.name)} Logo" 
-                                    onerror="this.onerror=null; this.classList.add('placeholder'); this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmYWxsPSJub25lIiBzdHJva2U9IiM1ZjYzNjgiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cmVjdCB3aWR0aD0iMjAiIGhlaWdoPSIyMCIgeD0iMiIgeT0iMiIgcj0iMiIvPjxwYXRoIGQ9Im05IDExIDMuMTMtMy4xM2ExLjUgMS41IDAgMCAxIDIuMTIgMCIgLz48cGF0aCBkPSJNNSAxNmw0LTEuNSA0IDQtMi40NDggMi41NjZhMiAyIDAgMCAxLS42ODItLjcwNSIgLz48L3N2Zz4=';">
-                        </div>
-                    </div>
-                    <h3 class="popular-card-app-name">${escapeHTML(item.name)}</h3>`;
-                container.appendChild(cardWrapper);
-            });
-        }
-
-        function renderItemGrid(items, elementId, isEditingGrid = false) { 
-            const container = document.getElementById(elementId);
-            container.innerHTML = '';
-
-            if (items.length === 0) {
-                container.innerHTML = `<p class='loading-message' style="grid-column: 1 / -1;">No items found.</p>`;
-                return;
-            }
-            items.forEach(item => {
-                const card = document.createElement("div");
-                card.className = isEditingGrid ? "item-card editing-card" : "item-card"; 
-                card.onclick = () => showItemDetail(item);
-                const newTagHTML = isNew(item) ? '<div class="new-tag">NEW</div>' : '';
-                const imgClass = item.imageUrl ? 'item-card-icon' : 'item-card-icon placeholder';
-                const reviews = Array.isArray(item.reviews) ? item.reviews : [];
-                const avgRating = reviews.length > 0 ? (reviews.reduce((s, r) => s + Number(r.rating), 0) / reviews.length).toFixed(1) : 'N/A';
-                
-                let cardContent = `${newTagHTML}<div class="item-card-icon-container"><img src="${escapeHTML(item.imageUrl)}" class="${imgClass}" alt="${escapeHTML(item.name)} icon" onerror="this.onerror=null; this.classList.add('placeholder'); this.src='';"></div><div class="item-card-title">${escapeHTML(item.name)}</div><div class="item-card-type">${escapeHTML(item.type)}</div>`;
-                if (!isEditingGrid) {
-                    cardContent += `<div class="item-card-info"><span>★ ${avgRating}</span><span>v${item.version || '1.0'}</span></div>`;
-                }
-                card.innerHTML = cardContent;
-                container.appendChild(card);
-            });
-        }
-
+        
+        // --- Detail View ---
         function showItemDetail(item) {
             currentItem = item;
             mainContent.classList.add('hidden');
@@ -1725,15 +1452,12 @@
             window.scrollTo(0, 0);
 
             const imgEl = document.getElementById("detailAppImage");
-            imgEl.src = item.imageUrl ? escapeHTML(item.imageUrl) : '';
-            imgEl.onerror = function() {
-                this.onerror = null;
-                this.classList.add('placeholder');
-                this.src = '';
-            };
+            imgEl.src = item.imageUrl || '';
+            imgEl.onerror = () => { imgEl.onerror=null; imgEl.classList.add('placeholder'); imgEl.src=''; };
             item.imageUrl ? imgEl.classList.remove('placeholder') : imgEl.classList.add('placeholder');
+            
             document.getElementById("detailAppName").textContent = escapeHTML(item.name);
-            document.getElementById("detailAppType").querySelector('span').textContent = escapeHTML(item.type.charAt(0).toUpperCase() + item.type.slice(1));
+            document.getElementById("detailAppCategory").querySelector('span').textContent = escapeHTML(item.category);
             
             const starRatingEl = document.getElementById("detailStarRating");
             const starsContainer = starRatingEl.querySelector(".stars");
@@ -1749,17 +1473,12 @@
                 reviewCountContainer.textContent = `(0 reviews)`;
             }
 
-            const actionBtn = document.getElementById("detailAppDownloadLink");
-            actionBtn.href = escapeHTML(item.url || "#");
-            // Change button text and icon based on type
-            const buttonIcon = item.type === 'editing' ? 'palette' : 'download';
-            const buttonText = 'Download'; // Always "Download" now
-            actionBtn.innerHTML = `<span class="material-icons">${buttonIcon}</span><span class="button-label">${buttonText}</span>`;
+            document.getElementById("detailAppDownloadLink").href = item.url || "#";
 
-            const screenshotSection = document.getElementById("screenshotSection");
             const screenshotGallery = document.getElementById("screenshotGallery");
             screenshotGallery.innerHTML = '';
-            if (item.screenshots && Array.isArray(item.screenshots) && item.screenshots.length > 0) {
+            const screenshotSection = document.getElementById("screenshotSection");
+            if (item.screenshots && item.screenshots.length > 0) {
                 screenshotSection.classList.remove('hidden');
                 item.screenshots.forEach((ssUrl, index) => {
                     const img = document.createElement('img');
@@ -1767,7 +1486,6 @@
                     img.className = 'screenshot-img';
                     img.alt = `${escapeHTML(item.name)} screenshot ${index + 1}`;
                     img.onclick = () => showLightbox(index);
-                    img.onerror = function() { this.style.display = 'none'; };
                     screenshotGallery.appendChild(img);
                 });
             } else {
@@ -1776,7 +1494,7 @@
 
             const descContainer = document.getElementById("detailAppDescContainer").querySelector('ul');
             descContainer.innerHTML = '';
-            if (item.desc && Array.isArray(item.desc)) {
+            if (item.desc && item.desc.length > 0) {
                 item.desc.forEach(fText => {
                     const li = document.createElement('li');
                     li.innerHTML = `<span class="material-icons">check_circle</span><span>${escapeHTML(fText)}</span>`;
@@ -1804,7 +1522,6 @@
             const reviewListDiv = document.getElementById("reviewList");
             reviewListDiv.innerHTML = '';
             if (reviewsArray && reviewsArray.length > 0) {
-                // Sort reviews by timestamp, newest first
                 const sortedReviews = reviewsArray.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
                 sortedReviews.forEach(review => {
                     const div = document.createElement("div");
@@ -1835,44 +1552,29 @@
             const newReview = { userName, rating, comment, timestamp: new Date().toISOString() };
             
             const updatedItem = JSON.parse(JSON.stringify(currentItem));
-            if (!updatedItem.reviews || !Array.isArray(updatedItem.reviews)) {
-                updatedItem.reviews = [];
-            }
+            updatedItem.reviews = updatedItem.reviews || [];
             updatedItem.reviews.push(newReview);
             
-            showItemDetail(updatedItem); 
-            if (ratingInput) ratingInput.checked = false;
-            document.getElementById('reviewComment').value = '';
+            await updateItemInDB(updatedItem); // Save to Firebase first
             
-            await updateItemInDB(updatedItem);
-            
+            // Then update UI
             currentItem = updatedItem;
             const itemIndex = allItems.findIndex(i => i.id === currentItem.id);
-            if (itemIndex > -1) {
-                allItems[itemIndex] = currentItem;
-            }
+            if (itemIndex > -1) allItems[itemIndex] = currentItem;
+            showItemDetail(currentItem); 
         }
 
         function scrollToReviews() {
             const reviewSection = document.querySelector('.review-section');
             if (reviewSection) {
-                const headerOffset = 70;
-                const elementPosition = reviewSection.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = elementPosition - headerOffset;
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-                setTimeout(() => {
-                    document.getElementById("reviewComment").focus();
-                }, 600);
+                reviewSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setTimeout(() => document.getElementById("reviewComment").focus(), 600);
             }
         }
         
+        // --- Lightbox Functions ---
         function showLightbox(index) {
-            if (!currentItem || !currentItem.screenshots || !Array.isArray(currentItem.screenshots) || currentItem.screenshots.length === 0) {
-                return;
-            }
+            if (!currentItem || !currentItem.screenshots || currentItem.screenshots.length === 0) return;
             currentScreenshotIndex = index;
             document.body.classList.add('lightbox-active');
             lightboxOverlay.classList.add('active');
@@ -1886,41 +1588,25 @@
 
         function showNextScreenshot() {
             if (!currentItem || !currentItem.screenshots) return;
-            const totalScreenshots = currentItem.screenshots.length;
-            if (currentScreenshotIndex < totalScreenshots - 1) {
-                currentScreenshotIndex++;
-                updateLightboxImage();
-            }
+            currentScreenshotIndex = (currentScreenshotIndex + 1) % currentItem.screenshots.length;
+            updateLightboxImage();
         }
 
         function showPrevScreenshot() {
             if (!currentItem || !currentItem.screenshots) return;
-            if (currentScreenshotIndex > 0) {
-                currentScreenshotIndex--;
-                updateLightboxImage();
-            }
+            currentScreenshotIndex = (currentScreenshotIndex - 1 + currentItem.screenshots.length) % currentItem.screenshots.length;
+            updateLightboxImage();
         }
 
         function updateLightboxImage() {
             if (!currentItem || !currentItem.screenshots) return;
-            const screenshots = currentItem.screenshots;
-            const totalScreenshots = screenshots.length;
-            if (currentScreenshotIndex >= totalScreenshots || currentScreenshotIndex < 0) {
-                hideLightbox();
-                return;
-            }
-            document.getElementById('lightboxImage').src = escapeHTML(screenshots[currentScreenshotIndex]);
-            const lightboxPrev = document.getElementById('lightboxPrev');
-            const lightboxNext = document.getElementById('lightboxNext');
-            if (totalScreenshots > 1) {
-                lightboxPrev.style.display = (currentScreenshotIndex > 0) ? 'flex' : 'none';
-                lightboxNext.style.display = (currentScreenshotIndex < totalScreenshots - 1) ? 'flex' : 'none';
-            } else {
-                lightboxPrev.style.display = 'none';
-                lightboxNext.style.display = 'none';
-            }
+            document.getElementById('lightboxImage').src = escapeHTML(currentItem.screenshots[currentScreenshotIndex]);
         }
         
+        // --- Utilities ---
+        function isNew(item) {
+            return item.addedTimestamp && (Date.now() - item.addedTimestamp) < NEW_DURATION_MS;
+        }
         function escapeHTML(str) {
             if (typeof str !== 'string') return '';
             return str.replace(/[&<>"']/g, match => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[match]));
@@ -1930,7 +1616,6 @@
         document.addEventListener("DOMContentLoaded", () => {
             fetchAllItems();
 
-            // Event Listeners
             menuBtn.addEventListener('click', toggleMenu);
             closeMenuBtn.addEventListener('click', toggleMenu);
             menuOverlay.addEventListener('click', toggleMenu);
@@ -1939,23 +1624,11 @@
             searchBtn.addEventListener('click', toggleSearch);
             document.querySelector('.close-search-btn').addEventListener('click', toggleSearch);
 
-            navItems.forEach(item => {
-                const target = item.dataset.target;
-                item.addEventListener('click', () => {
-                    if (target === 'home') goHome();
-                    else navigateAndFilter(target);
-                    if (sideMenu.classList.contains('active')) toggleMenu();
-                });
-            });
-
             mainSearchInput.addEventListener('input', (e) => {
                 const searchTerm = e.target.value.trim().toLowerCase();
                 const searchResultsContainer = document.getElementById('searchResultsContainer');
                 if (searchTerm) {
-                    const items = allItems.filter(item =>
-                        item.name.toLowerCase().includes(searchTerm) ||
-                        (Array.isArray(item.desc) && item.desc.join(' ').toLowerCase().includes(searchTerm))
-                    );
+                    const items = allItems.filter(item => item.name.toLowerCase().includes(searchTerm));
                     renderItemGrid(items, 'searchResultsContainer');
                 } else {
                     searchResultsContainer.innerHTML = '<p class="loading-message" style="grid-column: 1 / -1;">Start typing to see results.</p>';
@@ -1976,5 +1649,4 @@
         });
     </script>
 </body>
-
 </html>
