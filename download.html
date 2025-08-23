@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>RBmods Direct Download</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;padding:20px;background:#fafafa}
+    .wrap{max-width:720px;margin:auto}
+    h2{margin:0 0 12px}
+    .card{background:#fff;border:1px solid #eee;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+    .row{display:grid;grid-template-columns:1fr;gap:10px}
+    input,button{font-size:16px;padding:10px;border-radius:10px;border:1px solid #ddd;width:100%}
+    button{cursor:pointer}
+    .hint{font-size:13px;color:#666;margin-top:10px}
+    .ok{color:#0a7f37}
+    .err{color:#c62828}
+    .chip{display:inline-block;padding:6px 10px;border:1px solid #ddd;border-radius:999px;margin:6px 6px 0 0;cursor:pointer}
+    .list{margin-top:8px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h2>RBmods Direct Download (WebView Safe)</h2>
+  <div class="card">
+    <div class="row">
+      <!-- 👉 yahan apni file ka exact path/URL daalo -->
+      <!-- Option A: same domain path (recommended) -->
+      <input id="path" placeholder="/Rb-Mods/app.apk"
+             value="/Rb-Mods/app.apk" />
+      <!-- Option B: full GitHub URL (blob/raw/releases) -->
+      <input id="full" placeholder="https://github.com/username/repo/blob/main/app.apk" />
+      <button id="download">Start Download</button>
+      <button id="fallback">Open in External Browser (Fallback)</button>
+      <div id="msg" class="hint">Note: Agar Wep2App WebView se download hold ho, fallback use karo.</div>
+    </div>
+
+    <!-- Quick picks (edit/remove as per your files) -->
+    <div class="list">
+      <span class="chip" data-path="/Rb-Mods/app.apk">app.apk</span>
+      <span class="chip" data-path="/Rb-Mods/builds/app-v1.apk">build v1</span>
+      <span class="chip" data-path="/Rb-Mods/files/obb.main.1.com.app.obb">OBB</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Base domain for your site
+  const SITE = "https://ridh0077.github.io";
+
+  function toDirect(url) {
+    try {
+      const u = new URL(url);
+
+      // Release asset (already direct)
+      if (u.hostname === "github.com" && u.pathname.includes("/releases/download/")) {
+        return u.toString();
+      }
+
+      // blob → raw
+      if (u.hostname === "github.com" && u.pathname.includes("/blob/")) {
+        const p = u.pathname.split("/");
+        const user = p[1], repo = p[2], branch = p[4];
+        const filePath = p.slice(5).join("/");
+        return `https://raw.githubusercontent.com/${user}/${repo}/${branch}/${filePath}?raw=1`;
+      }
+
+      // raw host → ensure ?raw=1
+      if (u.hostname === "raw.githubusercontent.com") {
+        if (!u.search) u.search = "?raw=1";
+        return u.toString();
+      }
+
+      // github.com file (no blob) → try ?raw=1
+      if (u.hostname === "github.com") {
+        if (!u.search) u.search = "?raw=1";
+        return u.toString();
+      }
+
+      // Any other host → as-is
+      return u.toString();
+    } catch (e) {
+      // Not a full URL → treat as site-relative path
+      const clean = url.startsWith("/") ? url : `/${url}`;
+      return SITE + clean;
+    }
+  }
+
+  function triggerDownload(url) {
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = ""; // hint download
+    a.rel = "noopener";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  function openExternal(url) {
+    window.open(url, "_blank");
+  }
+
+  const elPath = document.getElementById("path");
+  const elFull = document.getElementById("full");
+  const msg = document.getElementById("msg");
+
+  document.getElementById("download").addEventListener("click", () => {
+    const val = elFull.value.trim() || elPath.value.trim();
+    if (!val) {
+      msg.innerHTML = '<span class="err">File path ya URL daalo.</span>';
+      return;
+    }
+    const direct = toDirect(val);
+    triggerDownload(direct);
+    msg.innerHTML = `<span class="ok">Trying download:</span><br>${direct}`;
+  });
+
+  document.getElementById("fallback").addEventListener("click", () => {
+    const val = elFull.value.trim() || elPath.value.trim();
+    if (!val) {
+      msg.innerHTML = '<span class="err">File path ya URL daalo.</span>';
+      return;
+    }
+    const direct = toDirect(val);
+    openExternal(direct);
+    msg.innerHTML = `Opened in external browser (fallback):<br>${direct}`;
+  });
+
+  // Quick chips fill
+  document.querySelectorAll(".chip").forEach(ch => {
+    ch.addEventListener("click", () => {
+      elPath.value = ch.getAttribute("data-path") || "";
+      elFull.value = "";
+      msg.textContent = "Path selected. Start Download dabao.";
+    });
+  });
+</script>
+</body>
+</html>
